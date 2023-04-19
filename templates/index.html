@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Procesamiento de archivos .xlsx</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <h1>Procesamiento de archivos .xlsx</h1>
+    <p>Sube un archivo .xlsx para procesar:</p>
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload_file') }}">
+      <input type="file" name="file" id="file" accept=".xlsx">
+      <input type="submit" value="Procesar">
+    </form>
+  </body>
+</html>
