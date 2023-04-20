@@ -33,3 +33,8 @@ python app.py
 docker build -t nombre_de_la_imagen .
 docker run -p 5000:5000 nombre_de_la_imagen
 ``` 
+ [Web CITRADI](https://www.icesi.edu.co/centros-academicos/citradi/)
+
+ ## Hecho por:
++ [Christian David Flor Astudillo](https://github.com/ChristianFlor "Christian Flor")
++ [Robin Castro Gil ](https://scholar.google.ca/citations?user=yjRyd6gAAAAJ&hl=en "Robin Castro Gil")
