@@ -14,7 +14,7 @@ def upload_file():
     df = pd.read_excel(uploaded_file)
     
     df.columns =['id', 'nombreCita', 'documento', 'gruposDocumentos',
-       'contenidoCita', 'comentario', 'codigos', 'referencia', 'densidad', 'extension','creadoPor'
+       'contenidoCita', 'comentario', 'codigos', 'referencia', 'densidad', 'extension','creadoPor',
        'modificadoPor', 'creado', 'modificado']
     # Agrupar los valores duplicados por documento y código de cita
     agrupado = df.groupby(['documento', 'codigos'], as_index=False)['contenidoCita'].first()
