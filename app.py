@@ -1,16 +1,35 @@
 from flask import Flask, render_template, request, send_file
+from flask_wtf.csrf import CSRFProtect
+from flask_talisman import Talisman
 import pandas as pd
 from io import BytesIO
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+
+
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'citraditboard2023+'  # Necesario para CSRF y Flask-Session, cambia 'your-secret-key' por una clave aleatoria segura
+app.config['SESSION_COOKIE_SECURE'] = True  # Configurar la cookie de sesión para que solo se envíe a través de HTTPS
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Max file size of 16MB
+
+csrf = CSRFProtect(app)  # Habilitar CSRF protection
+Talisman(app)  # Habilitar Flask-Talisman para encabezados de seguridad HTTP
+limiter = Limiter(key_func=get_remote_address)
+limiter.init_app(app)
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
 @app.route('/', methods=['POST'])
+@csrf.exempt # Exención de la protección CSRF para esta ruta
+@limiter.limit("10/minute")  # 10 requests per minute
 def upload_file():
     uploaded_file = request.files['file']
+    if not uploaded_file.filename.endswith('.xlsx'):
+        return 'Invalid file type', 400
+    
     df = pd.read_excel(uploaded_file)
     
     df.columns =['id', 'nombreCita', 'documento', 'gruposDocumentos',
@@ -42,4 +61,4 @@ def upload_file():
     )
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)

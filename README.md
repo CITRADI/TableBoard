@@ -15,6 +15,7 @@ En macOS/Linux: source venv/bin/activate
 6. Instala todas las dependencias necesarias ejecutando el siguiente comando en la terminal: 
 ```bash 
 pip install -r requirements.txt 
+pip install flask-wtf flask-talisman flask-limiter
 pip install --upgrade pandas
 ```   
 7. Ejecuta la aplicación con el siguiente comando: 
