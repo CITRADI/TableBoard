@@ -9,7 +9,7 @@ from flask_limiter.util import get_remote_address
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'citraditboard2023+'  # Necesario para CSRF y Flask-Session, cambia 'your-secret-key' por una clave aleatoria segura
+app.config['SECRET_KEY'] = '+'  # Necesario para CSRF y Flask-Session, cambia 'your-secret-key' por una clave aleatoria segura
 app.config['SESSION_COOKIE_SECURE'] = True  # Configurar la cookie de sesión para que solo se envíe a través de HTTPS
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Max file size of 16MB
 
