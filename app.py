@@ -13,8 +13,8 @@ def upload_file():
     uploaded_file = request.files['file']
     df = pd.read_excel(uploaded_file)
     
-    df.columns =['identificador', 'nombreCita', 'documento', 'gruposDocumentos',
-       'contenidoCita', 'comentario', 'codigos', 'referencia', 'densidad',
+    df.columns =['id', 'nombreCita', 'documento', 'gruposDocumentos',
+       'contenidoCita', 'comentario', 'codigos', 'referencia', 'densidad', 'extension','creadoPor'
        'modificadoPor', 'creado', 'modificado']
     # Agrupar los valores duplicados por documento y código de cita
     agrupado = df.groupby(['documento', 'codigos'], as_index=False)['contenidoCita'].first()
